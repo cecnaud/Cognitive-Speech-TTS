@@ -37,7 +37,7 @@ class TextToSpeech(object):
     subscription key for an access token that is valid for ten minutes.
     '''
     def get_token(self):
-        fetch_token_url = "https://westus.api.cognitive.microsoft.com/sts/v1.0/issueToken"
+        fetch_token_url = "https://westeurope.api.cognitive.microsoft.com/sts/v1.0/issueToken"
         headers = {
             'Ocp-Apim-Subscription-Key': self.subscription_key
         }
@@ -45,7 +45,7 @@ class TextToSpeech(object):
         self.access_token = str(response.text)
 
     def save_audio(self):
-        base_url = 'https://westus.tts.speech.microsoft.com/'
+        base_url = 'https://westeurope.tts.speech.microsoft.com/'
         path = 'cognitiveservices/v1'
         constructed_url = base_url + path
         headers = {
@@ -55,10 +55,10 @@ class TextToSpeech(object):
             'User-Agent': 'YOUR_RESOURCE_NAME'
         }
         xml_body = ElementTree.Element('speak', version='1.0')
-        xml_body.set('{http://www.w3.org/XML/1998/namespace}lang', 'en-us')
+        xml_body.set('{http://www.w3.org/XML/1998/namespace}lang', 'fr-FR')
         voice = ElementTree.SubElement(xml_body, 'voice')
-        voice.set('{http://www.w3.org/XML/1998/namespace}lang', 'en-US')
-        voice.set('name', 'en-US-Guy24kRUS') # Short name for 'Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)'
+        voice.set('{http://www.w3.org/XML/1998/namespace}lang', 'fr-FR')
+        voice.set('name', 'fr-FR-Paul-Apollo') # Short name for 'Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)'
         voice.text = self.tts
         body = ElementTree.tostring(xml_body)
 
@@ -77,7 +77,7 @@ class TextToSpeech(object):
             print("Reason: " + str(response.reason) + "\n")
 
     def get_voices_list(self):
-        base_url = 'https://westus.tts.speech.microsoft.com/'
+        base_url = 'https://westeurope.tts.speech.microsoft.com/'
         path = 'cognitiveservices/voices/list'
         constructed_url = base_url + path
         headers = {
