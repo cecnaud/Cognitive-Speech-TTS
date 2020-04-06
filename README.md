@@ -2,6 +2,7 @@
 page_type: sample
 description: "Samples in various languages for using Text-to-Speech."
 languages:
+- Francais
 - csharp
 - python
 - nodejs
